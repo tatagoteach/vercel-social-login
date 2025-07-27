@@ -10,16 +10,13 @@ import {
   Cog6ToothIcon,
   BellIcon,
   ChartBarIcon,
-  DocumentTextIcon,
-  Bars3Icon,
-  XMarkIcon
+  DocumentTextIcon
 } from '@heroicons/react/24/outline'
 
 export const Dashboard: React.FC = () => {
   const { user, signOut, loading } = useAuth()
   const navigate = useNavigate()
   const [isSigningOut, setIsSigningOut] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const handleSignOut = async () => {
     setIsSigningOut(true)
@@ -90,64 +87,64 @@ export const Dashboard: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* 導航欄 */}
-      <nav className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
-        <nav className="bg-white shadow-sm border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-              {/* Logo 和標題 */}
-              <div className="flex items-center space-x-2 sm:space-x-4">
-                <div className="h-6 w-6 sm:h-8 sm:w-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                  <ChartBarIcon className="h-3 w-3 sm:h-5 sm:w-5 text-white" />
-                </div>
-                <h1 className="text-lg sm:text-xl font-semibold text-gray-900">儀表板</h1>
+      <nav className="bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo 和標題 */}
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <div className="h-6 w-6 sm:h-8 sm:w-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <ChartBarIcon className="h-3 w-3 sm:h-5 sm:w-5 text-white" />
               </div>
-              
-              {/* 響應式用戶操作區 */}
-              <div className="flex items-center space-x-2 sm:space-x-4">
-                {/* 隱藏小螢幕上的通知和設定按鈕 */}
-                <div className="hidden sm:flex items-center space-x-2">
-                  <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors duration-200">
-                    <BellIcon className="h-6 w-6" />
-                  </button>
-                  <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors duration-200">
-                    <Cog6ToothIcon className="h-6 w-6" />
-                  </button>
-                </div>
+              <h1 className="text-lg sm:text-xl font-semibold text-gray-900">儀表板</h1>
+            </div>
+            
+            {/* 用戶資訊和操作 */}
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              {/* 通知按鈕 */}
+              <div className="hidden sm:flex items-center space-x-2">
+                <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors duration-200">
+                  <BellIcon className="h-6 w-6" />
+                </button>
                 
-                {/* 用戶頭像 */}
-                <div className="flex items-center space-x-2 sm:space-x-3">
-                  {userInfo.avatar ? (
-                    <img 
-                      src={userInfo.avatar} 
-                      alt="用戶頭像" 
-                      className="w-6 h-6 sm:w-8 sm:h-8 rounded-full ring-2 ring-gray-200"
-                    />
-                  ) : (
-                    <UserCircleIcon className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400" />
-                  )}
-                  <span className="text-xs sm:text-sm font-medium text-gray-700 hidden md:block">
-                    {userInfo.name}
-                  </span>
-                </div>
-                
-                {/* 登出按鈕 */}
-                <button
-                  onClick={handleSignOut}
-                  disabled={isSigningOut}
-                  className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-transparent text-xs sm:text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-                >
-                  {isSigningOut ? (
-                    <div className="animate-spin rounded-full h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-white mr-1 sm:mr-2"></div>
-                  ) : (
-                    <ArrowRightOnRectangleIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                  )}
-                  <span className="hidden sm:inline">{isSigningOut ? '登出中...' : '登出'}</span>
-                  <span className="sm:hidden">出</span>
+                {/* 設定按鈕 */}
+                <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors duration-200">
+                  <Cog6ToothIcon className="h-6 w-6" />
                 </button>
               </div>
+              
+              {/* 用戶頭像和名稱 */}
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                {userInfo.avatar ? (
+                  <img 
+                    src={userInfo.avatar} 
+                    alt="用戶頭像" 
+                    className="w-6 h-6 sm:w-8 sm:h-8 rounded-full ring-2 ring-gray-200"
+                  />
+                ) : (
+                  <UserCircleIcon className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400" />
+                )}
+                <span className="text-xs sm:text-sm font-medium text-gray-700 hidden md:block">
+                  {userInfo.name}
+                </span>
+              </div>
+              
+              {/* 登出按鈕 */}
+              <button
+                onClick={handleSignOut}
+                disabled={isSigningOut}
+                className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-transparent text-xs sm:text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+              >
+                {isSigningOut ? (
+                  <div className="animate-spin rounded-full h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-white mr-1 sm:mr-2"></div>
+                ) : (
+                  <ArrowRightOnRectangleIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                )}
+                <span className="hidden sm:inline">{isSigningOut ? '登出中...' : '登出'}</span>
+                <span className="sm:hidden">出</span>
+              </button>
             </div>
           </div>
-        </nav>
+        </div>
       </nav>
       
       {/* 主要內容 */}
@@ -189,7 +186,7 @@ export const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* 統計卡片 - 改進響應式網格 */}
+        {/* 統計卡片 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <div className="bg-white overflow-hidden shadow-sm rounded-lg sm:rounded-xl border border-gray-200">
             <div className="p-4 sm:p-6">

@@ -17,7 +17,6 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 })
 
 // 認證相關的輔助函數
-// 添加調試日誌
 export const auth = {
   // Email 登入
   signInWithEmail: async (email: string, password: string) => {
@@ -61,8 +60,7 @@ export const auth = {
       console.error('Line OAuth 錯誤:', error)
       throw error
     }
-  }
-}
+  },
 
   // 登出
   signOut: async () => {
