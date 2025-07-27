@@ -1,0 +1,51 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 5. Supabase 專案設定指南
+
+# 要在 Supabase Dashboard 中設定 OAuth 提供者：
+
+# Google OAuth 設定：
+1. 前往 Supabase Dashboard → Authentication → Providers
+2. 啟用 Google 提供者
+3. 在 Google Cloud Console 建立 OAuth 2.0 憑證
+4. 設定授權重定向 URI：`https://your-project.supabase.co/auth/v1/callback`
+5. 將 Client ID 和 Client Secret 填入 Supabase
+
+# Line OAuth 設定：
+1. 前往 Line Developers Console 建立 Line Login Channel
+2. 在 Supabase Dashboard 啟用 Line 提供者
+3. 設定 Callback URL：`https://your-project.supabase.co/auth/v1/callback`
+4. 將 Channel ID 和 Channel Secret 填入 Supabase
+
+# 6. 更新 .gitignore
+
+# 確保 `.env.local` 被忽略：
